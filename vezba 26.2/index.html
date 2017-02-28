@@ -1,0 +1,42 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="semafor"> 
+    <div class="boja"></div>
+    <div class="boja"></div>
+    <div class="boja"></div>  
+    </div>
+
+
+
+    <script>
+    
+
+    function semafor(){
+var boje = document.getElementsByClassName('boja');
+    boje[0].style.background = 'red';
+    boje[1].style.background = 'gray';
+    boje[2].style.background = 'gray';
+    function promeniuzutu(){
+        boje[1].style.background = 'yellow';
+    }
+
+    function promeniuzelenu(){
+    boje[0].style.background = 'gray';
+    boje[1].style.background = 'gray';
+    boje[2].style.background = 'green';
+    }
+
+    var x = setTimeout(promeniuzutu,3000);
+    var y = setTimeout(promeniuzelenu, 5000);
+    var start = setInterval(semafor,8000);
+    }
+
+    semafor();
+    </script>
+</body>
+</html>

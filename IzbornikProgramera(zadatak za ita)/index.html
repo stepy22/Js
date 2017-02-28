@@ -1,0 +1,113 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    img{
+        width:400px;
+        height: 400px;
+        border:1px solid lightslategrey;
+        margin-left:90px;
+    }
+    #ime, #prezime{
+        font-weight: bold;
+        font-size: 25px;
+    }
+    #title{
+color:midnightblue;
+ margin-top:20px;
+ font-size:17px;
+    }
+    #ram{
+        height:600px;
+        width:600px;
+        border:1px solid lightblue;
+        overflow: hidden;
+    }
+    #saznajvise{
+        cursor: pointer;
+    }
+    #opis{
+        visibility: hidden;
+    }
+    #zanimanje{
+        color:lightslategrey;
+    }
+    </style>
+</head>
+<body>
+<form>
+     <label for="programer">Izaberi Programera</label>
+    <select onchange="izborprogramera(this)"  name="programer">
+    <option value="vukasin">Vukasin</option>
+    <option value="Sinisa">Sinisa</option>
+    <option value="Stefan">Stefan</option>
+    <option value="Nenad">Nenad</option>
+  </select>
+</form>
+
+<div id="ram">
+     <img src="img/vukasin.jpg"id="profilna"  alt="">
+     <div id="ime">Vukasin</div>
+     <div id="prezime">Petrovic</div>
+     <span id="zanimanje">PHP developer</span>
+     <div id="title">Programer za vase web stranice i aplikacije</div><span id="saznajvise" onclick="prikazopisa()">Klik za vise informacija</span>
+     <p id="opis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia ea rem minima velit temporibus quam, labore eum optio quasi est! Consequuntur incidunt autem saepe, qui, hic libero eaque accusamus iure! Laudantium cum, quam eligendi nesciunt odio impedit sit doloribus, sapiente praesentium incidunt quas ipsam tempore dolorem fugiat quaerat qui distinctio!</p>
+
+</div>
+
+
+
+<script>var programeri = [['Vukasin','Petrovic','PHP developer','Programer za vase web stranice i aplikacije'],
+                         ['Sinisa','Miskovic','Mobile Developer','Programer za vase mobilne aplikacije'],
+                         ['Stefan','Rastavac','Graficki Dizajner','Ako vam treba logo, dizajn plakata il flaera, Stefan je pravo resenje'],
+                         ['Nenad','Jevtic','Front-end deveoper','Vase web stranica ce izgledati autenticno uz pomoc Nenada'],];
+var click=0;
+function prikazopisa(){
+     document.getElementById("opis").style.visibility = "visible";
+     document.getElementById("ram").style.overflow = "visible";
+          document.getElementById("ram").style.height = "auto";
+          document.getElementById('saznajvise').innerHTML="Vrati";
+          click++;
+          if(click%2===0){
+              document.getElementById("opis").style.visibility = "hidden";
+     document.getElementById("ram").style.overflow = "hidden";
+          document.getElementById("ram").style.height = "600px";
+                    document.getElementById('saznajvise').innerHTML="Klik za vise informacija";
+          }
+
+}
+function izborprogramera(izbor){
+var ime = document.getElementById('ime');
+var prezime = document.getElementById('prezime');
+var zanimanje = document.getElementById('zanimanje');
+var title = document.getElementById('title');
+
+var izbvalue =izbor.value;
+var profilna = document.getElementById('profilna');
+        profilna.setAttribute("src","img/"+izbvalue+".jpg");
+    
+        switch(izbvalue) {
+    case "Sinisa":
+        izabrano = 1;
+        break;
+        case "Stefan":
+        izabrano=2;
+        break;
+        case "Nenad":
+        izabrano = 3;
+        break;
+        default: izabrano=0;
+    }
+    ime.innerHTML = programeri[izabrano][0];
+    prezime.innerHTML = programeri[izabrano][1];
+    zanimanje.innerHTML = programeri[izabrano][2];
+    title.innerHTML = programeri[izabrano][3];
+
+
+
+}
+</script>
+
+</body>
+</html>

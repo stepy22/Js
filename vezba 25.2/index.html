@@ -1,0 +1,38 @@
+<html>
+<head><style>
+    #div1{
+        width:200px;
+        height:100px;
+        background:red;
+        float:left;
+    }
+     #div2{
+        width:200px;
+        height:100px;
+        background:blue;
+        float:left;
+    } #div3{
+        width:200px;
+        height:100px;
+        background:green;
+        float:left;
+    }
+    </style></head>
+<body>
+    <div id="div1" onclick="sayhi()"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+<script>
+function sayhi(){
+    var boja,r,g,b;
+    r=Math.floor((Math.random()*256));
+        g=Math.floor((Math.random()*256));
+    b=Math.floor((Math.random()*256));
+    boja='rgb('+r+','+g+','+b+')';
+    
+
+    var div2=document.getElementById('div2').style.background=boja;
+}
+</script>
+</body>
+</html>
