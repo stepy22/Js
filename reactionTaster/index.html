@@ -1,0 +1,118 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    #shape{
+        width:100px;
+        height:100px;
+        background: red;
+        display:none;
+        position: relative;
+
+         }
+         #vasrez{
+             visibility: hidden;
+         }
+         li{
+             float:left;
+             margin-left:30px;
+             cursor: pointer;
+             list-style-type:none;
+         }
+         #pocniigru{
+             margin-left:20px;
+         }
+
+        </style>
+</head>
+<body>
+    <div id="tezinaid">Izaberi tezinu <br>
+       <ul>
+       <li onclick="tezina(lako), izabraliste(lako)">Lako</li>
+       <li onclick="tezina(srednje)">srednje</li>
+       <li onclick="tezina(tesko)">Tesko</li>
+       </ul>
+    <p id="primer"></p>
+    </div>
+    <input onclick="pocni()" value="pocni igru" id="pocniigru"type="button">
+    <p id="vasrez">Vas rezultat je :<span id="result"></span></p>
+    <div id="shape"></div>
+    <script>
+    var lako ='lako';
+    var srednje ='srednje';
+    var tesko='tesko';
+    tezinaigre='lako';
+    
+ function tezina(gamelvl){
+     tezinaigre=gamelvl;
+      document.getElementById('primer').innerHTML='<br>izabrali ste: '+ tezinaigre;
+
+ }
+ 
+
+ 
+            
+    function pocni(){
+        document.getElementById('pocniigru').style.visibility="hidden";
+        document.getElementById('vasrez').style.visibility="visible";
+        document.getElementById('tezinaid').innerHTML='izabrali ste '+ tezinaigre;
+        var start = new Date().getTime();
+        var vremejavljanja;
+    function napravikrug(){
+        var top = Math.random() * 400;
+        var left = Math.random() * 1000;
+         var radius = Math.random()*100;
+        if(tezinaigre=='lako'){
+        var size = Math.random()*200;
+       vremejavljanja= Math.random()+ 2000;
+       if(size<=100){
+           size=100;
+       }
+        }
+        else if(tezinaigre=='tesko'){
+        var size = Math.random()*50;
+        vremejavljanja= Math.random()+ 500;
+        if(size<=10){
+           size=10;
+       }
+        }
+        else{
+       var size = Math.random()*100;
+       vremejavljanja= Math.random()+ 1000;
+       if(size<=30){
+           size=40;
+       }
+        }
+        
+        var flag = Math.floor(Math.random() *21)+1;
+        document.getElementById('shape').style.borderRadius= radius + 'px';
+        document.getElementById('shape').style.background ="url('img/"+flag+".png')";
+        document.getElementById('shape').style.backgroundSize=size +"px"+" " + size+"px";
+        document.getElementById('shape').style.height = size + "px";
+        document.getElementById('shape').style.width = size + "px";
+        document.getElementById('shape').style.top = top + "px";
+        document.getElementById('shape').style.left = left + "px";
+        document.getElementById('shape').style.display = 'block';
+            start = new Date().getTime();
+    }
+    function napraviposlepogodka(){
+    setTimeout(napravikrug,vremejavljanja);
+    }
+    napraviposlepogodka();
+    document.getElementById('shape').onclick = function(){
+                document.getElementById('shape').style.display='none';
+        var end = new Date().getTime();
+        var timeTaken = (end - start)/1000;
+        
+        document.getElementById('result').innerHTML = timeTaken + 's';
+        napraviposlepogodka();
+    }
+    }
+    
+    </script>
+   
+
+</script>
+</body>
+</html>
