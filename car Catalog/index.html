@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cars</title>
+    <style>
+        body {
+            background-image: url('img/background.png');
+            background-image: repeat;
+            text-align: center;
+        }
+        
+        #wrapper {
+            width: 720px;
+            margin: auto;
+        }
+        
+        #win {
+            width: 220px;
+            float: left;
+            padding: 3px;
+            margin: 3px;
+            border: 1px solid green;
+            background-image: url('img/bg.jpg');
+            -moz-box-shadow: -7px 16px 22px #000000;
+            -webkit-box-shadow: -7px 16px 22px #000000;
+            box-shadow: -7px 16px 22px #000000;
+        }
+        
+        #win img {
+            width: 100%;
+            height: 130px;
+        }
+    </style>
+    <script>
+        var catalogue = {
+            Opel: [{ id: 1, model: "Astra", power: "87 kw", year: 2003, price: 3500 },
+            { id: 2, model: "Zafira", power: "110 kw", year: 2004, price: 4500 },
+            { id: 3, model: "Altera", power: "148 kw", year: 2002, price: 5400 }],
+            Mercedes: [{ id: 4, model: "ML 220", power: "187 kw", year: 2007, price: 9370 },
+            { id: 5, model: "E 320", power: "112 kw", year: 2003, price: 3750 }],
+            Fiat: [{ id: 6, model: "Punto", power: "87 kw", year: 2009, price: 4800 }],
+            Toyota: [{ id: 7, model: "Rav4", power: "93 kw", year: 2005, price: 7800 }]
+        };
+function get_car(brand){
+                    var cars, winText = "";
+					var results = document.getElementById("results");
+					results.innerHTML = "";
+                    if(catalogue[brand] != undefined){
+                        for(key in catalogue[brand]){
+                            cars = catalogue[brand][key];
+                            winText = '<div id="win"><h4>'+
+							cars.model+'</h4><img src="img/img'+
+							cars.id+'.jpg" onError=this.src="img/default.jpg";></img><p>Brand: '+
+							brand+'</p><p>Year: '+
+							cars.year+'</p><p>Power: '+
+							cars.power+'</p><p>Price: '+
+							cars.price+' &#8364</p></div>';
+							results.innerHTML += winText;
+                            }
+                    }else{
+                        document.write("In our database there are no " + brand + " vehicles.");
+                    }
+                }
+        function insertCar() {
+            var forma = document.forms[0];
+            var brand = forma.brand.value;
+            var model = forma.model.value;
+            var power = forma.power.value;
+            var year = forma.year.value;
+            var price = forma.price.value;
+            var id = 0;
+            for (prop in catalogue) {
+                for (var x in catalogue[prop]) {
+                    var idp = catalogue[prop][x]['id'];
+                    if (id < idp) {
+                        id = idp;
+                    }
+                }
+            }
+            id++;
+            var preObj = {};
+            preObj['id'] = id;
+            preObj['model'] = model;
+            preObj['power'] = power;
+            preObj['year'] = year;
+            preObj['price'] = price;
+
+            catalogue[brand].push(preObj);
+        } </script>
+                 </head>
+    <body>
+	<div id="wrapper">
+	    <div>
+		<form>
+		    <label for="brand">Select car brand:</label><br/>
+		    <select name="brand">
+		    <script>
+			for(var prop in catalogue){
+			    document.write("<option value='"+prop+"'>" + prop + "</option>");
+			}
+		    </script>
+		</select><br/>
+		    <label for="model">Model:</label><br/>
+		    <input type="text" name="model" placeholder="Model"/><br/>
+		    <label for="power">Power:</label><br/>
+		    <input type="text" name="power" placeholder="Power"/><br/>
+		    <label for="year">Year:</label><br/>
+		    <input type="text" name="year" placeholder="Year"/><br/>
+		    <label for="price">Price:</label><br/>
+		    <input type="text" name="price" placeholder="Price"/><br/>
+		    <input type="button" value="Insert" onclick="insertCar()"/>
+		</form>
+	    </div>
+	    <form>
+		<select onchange="get_car(this.value)">
+		    <script>
+			for(var prop in catalogue){
+			    document.write("<option>" + prop + "</option>");
+			}
+		    </script>
+		</select>
+	    </form>
+	    <div id="results"></div>
+	</div>    
+    </body>
+</html>           
+                  
+    </script>
